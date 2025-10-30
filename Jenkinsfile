@@ -11,7 +11,7 @@ pipeline {
   stages {
     stage('Checkout') {
       steps {
-        checkout scm
+        checkout main
       }
     }
 
@@ -30,7 +30,7 @@ pipeline {
     stage('Generate Tip') {
       steps {
         withEnv(["OPENAI_API_KEY=${env.OPENAI_API_KEY}"]) {
-          sh '. venv/bin/activate && python -m app.generate_tip'
+          sh '. venv/bin/activate && python3 -m app.generate_tip'
         }
       }
       post {
