@@ -1,0 +1,1 @@
+Prioritize data quality over quantity; ensure your training datasets are clean, diverse, and representative of the problem domain. This will significantly improve model performance and generalization while reducing the risk of biases and overfitting. Regularly audit and update your datasets to adapt to changes in the real world.
