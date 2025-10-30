@@ -7,7 +7,7 @@ FILE="$1"
 MSG="${2:-Add tip artifact from CI}"
 
 git config user.email "latonya.johnson0921@gmail.com"
-git config user.name "LaTonya Johnson"
+git config user.name "LaTonyaJ"
 
 git add "$FILE" || true
 git commit -m "$MSG" || echo "Nothing to commit"
