@@ -3,7 +3,7 @@ pipeline {
   agent any
 
   environment {
-    # Name matches the Jenkins credential id for an SSH key or usernamePassword
+    // Name matches the Jenkins credential id for an SSH key or usernamePassword
     GIT_CREDENTIALS = 'GIT_DEPLOY_KEY'     // replace with real Jenkins credentials id
     OPENAI_API_KEY = credentials('2454168b-51b4-4d86-b779-c4cde1d9c35d') // store your key in Jenkins credentials
   }
