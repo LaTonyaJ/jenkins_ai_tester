@@ -11,4 +11,4 @@ git config user.name "LaTonyaJ"
 
 git add "$FILE" || true
 git commit -m "$MSG" || echo "Nothing to commit"
-git push origin HEAD
+git push origin main
