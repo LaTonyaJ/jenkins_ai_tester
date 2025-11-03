@@ -32,7 +32,8 @@ def generate_tip(prompt="Give me a concise AI engineering tip of the day (one sh
 
 def save_tip(text: str, out_dir="artifacts"):
     Path(out_dir).mkdir(parents=True, exist_ok=True)
-    ts = datetime.utcnow().strftime("%Y%m%dT%H%M%SZ")
+    # Use more readable timestamp format: YYYY-MM-DD_HH-MM-SS
+    ts = datetime.utcnow().strftime("%Y-%m-%d_%H-%M-%S")
     filepath = Path(out_dir) / f"tip_{ts}.txt"
     with open(filepath, "w", encoding="utf-8") as f:
         f.write(text + "\n")
@@ -43,6 +44,18 @@ def save_tip(text: str, out_dir="artifacts"):
     return str(filepath)
 
 if __name__ == "__main__":
+    import sys
+    
     tip = generate_tip()
     path = save_tip(tip)
     print(f"Saved tip to {path}")
+    
+    # Show turtle alert if --alert flag is provided
+    if "--alert" in sys.argv:
+        try:
+            from .turtle_alert import show_tip_alert
+            show_tip_alert(tip)
+        except ImportError as e:
+            print(f"Could not import turtle alert: {e}")
+        except Exception as e:
+            print(f"Error showing turtle alert: {e}")

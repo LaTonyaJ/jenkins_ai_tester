@@ -25,6 +25,14 @@ git add "$FILE" || true
 
 # Try to commit; if there is nothing to commit, just exit successfully
 if git commit -m "$MSG"; then
+  # Rebase to avoid commit errors and ensure we're up-to-date
+  echo "Rebasing with remote changes..."
+  if ! git pull --rebase origin main; then
+    echo "Rebase failed, aborting rebase and exiting"
+    git rebase --abort
+    exit 1
+  fi
+  
   # Determine current branch name. When detached, this returns 'HEAD'.
   CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD 2>/dev/null || echo "HEAD")
   if [ "$CURRENT_BRANCH" = "HEAD" ]; then
